@@ -7,7 +7,8 @@ export class HomePage{
     }
 
 onlineShop(){
-cy.get(this.onlineShoppingProduct).click();
+cy.log('Go to Online Shopping')
+cy.get(this.onlineShoppingProduct, {timeout:5000}).should('be.visible').click();
 }
 
 }

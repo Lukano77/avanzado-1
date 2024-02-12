@@ -8,13 +8,13 @@ import { LoginPage } from "../../../support/PageObjects/loginPage";
 import { HomePage } from "../../../support/PageObjects/homePage";
 import { OnlineShop } from "../../../support/PageObjects/onlineShop";
 import { ShoppingCart } from "../../../support/PageObjects/shoppingCart";
+import { Waits } from "../../../waits/waits";
 
 
 describe(`${scenarioName} - ${module} ` , ()=> {
     const loginPage = new LoginPage();
     const homePage = new HomePage();
     const onlineShop = new OnlineShop();
-    const shoppingCart = new ShoppingCart();
 
     beforeEach('Preconditions', ()=>{
         Cypress.session.clearAllSavedSessions();
@@ -23,28 +23,36 @@ describe(`${scenarioName} - ${module} ` , ()=> {
         loginPage.writeUser("pushingit");
         loginPage.writePassword("123456!");
         loginPage.clickLoginButton();   
-        cy.wait(3000);  
         homePage.onlineShop();
         onlineShop.checkTitle();
         
     })
 
-
     it("Should be allow to delete a product",()=>{
         cy.fixture(`${module}/${scenarioName}-${testCaseId}/data`).then(data=>{
-            data.idProduct = `${data.idProduct}`,
-            data.descriptionProduct = `${data.descriptionProduct}`;
-            data.ticketId = `${data.ticketId}`;
- 
-            cy.log(`Add a product ${data.descriptionProduct}`);
-            onlineShop.addProduct(data.idProduct);   
-            cy.wait(3000);
+
+            onlineShop.clickaddNewProduct();
+            onlineShop.verifyCreateProductModal();
+            cy.log(`Product Name ${data.productName}`);
+            cy.log(`Product Price ${data.productPrice}`);
+            cy.log(`Product Image Url ${data.ProductImageUrl}`);
+            cy.log(`Product Id ${data.id}`);
+
+            onlineShop.addNewProduct(data.productName,data.productPrice,data.ProductImageUrl,data.id);
+            onlineShop.createProductButton();
             onlineShop.closeMessageAlert();
-            cy.wait(3000);
             onlineShop.dropdoownSearching();
-            onlineShop.enterProductId(data.ticketId);
- 
-            cy.log(`Eliminar el producto ${data.idProduct}`);
+            onlineShop.enterProductId(data.id);
+
+            onlineShop.deleteProductButton(data.id);
+            onlineShop.deletingProductModal();
+            onlineShop.closeMessageAlert();
+            cy.log(`Producto Eliminado ${data.productName}`);
+            onlineShop.clearProductId();
+            onlineShop.dropdoownSearching();
+            onlineShop.enterProductId(data.id);
+            onlineShop.validateNonProductExist();
+
         });
     })
 
