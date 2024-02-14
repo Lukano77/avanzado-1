@@ -8,7 +8,10 @@ export class HomePage{
 
 onlineShop(){
 cy.log('Go to Online Shopping')
-cy.get(this.onlineShoppingProduct, {timeout:5000}).should('be.visible').click();
+cy.get(this.onlineShoppingProduct, {timeout:2000}).should('be.visible').click();
 }
 
+welcome(user_name){
+    cy.xpath(`//h2[contains(@id,'${user_name}')]`);
+}
 }

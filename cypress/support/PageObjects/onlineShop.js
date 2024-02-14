@@ -25,20 +25,22 @@ export class OnlineShop {
     checkTitle(){
         cy.get('.css-1vqu2wk').should('have.text','Online shop');
     }
-    
-    /*Not necessary to implemented now
-    addProduct(product){
-        cy.get(`[data-cy='${product}']`).click();
-    }
-    */
 
-    clickaddNewProduct(){
+    clickaddNewProductButton(){
         cy.get(this.addProduct).should('be.visible').click();
     }
 
     //Modal
-    verifyCreateProductModal(){
-        (cy.get('.chakra-modal__footer')).should('contains.text',"Create product");
+    verifyCreateProductModalTitle(){
+        cy.xpath("//header[contains(.,'Create Product')]");
+    }
+    verifyCreateProductModalButton(){
+        cy.get('.chakra-modal__footer').should('contains.text',"Create product");
+    }
+
+    verifyProductAddedModal(){
+        cy.xpath("//p[@class='chakra-text css-0'][contains(.,'Sandalias has been added')]");
+        
     }
 
 
@@ -49,20 +51,20 @@ export class OnlineShop {
         cy.get(this.productId).type(id);
     }
 
-    deleteProductButton(id){
+    deletingProducTrashIcon(id){
         cy.get(this.deleteProduct+id).click();
     }
 
-    deletingProductModal(){
+    deletingProduct(){
         cy.get(this.deleteProductModal).click();
     }
 
     createProductButton(){
-        cy.get(this.createProduct).click();
+        cy.get(this.createProduct).should('exist').click();
     }
 
     closeMessageAlert(){
-        cy.get(this.close, {timeout:3000}).click();
+        cy.get(this.close, {timeout:3000}).should('exist').click();
     }
 
     goToShoppingCart(){
@@ -77,12 +79,12 @@ export class OnlineShop {
         cy.get(this.searchBar).type(product+'{enter}');
     }
 
-    clearProductId(product){
+    clearProductId(){
         cy.get(this.searchBar).clear();
     }
 
     validateNonProductExist(product){
-        cy.get('product').should('not.exist')
+        cy.get(product).should('not.exist')
     }
     
 }
