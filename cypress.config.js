@@ -9,7 +9,6 @@ module.exports = defineConfig({
     experimentalSessionAndOrigin: true,
     defaultCommandTimeout: 1000,
     watchForFileChanges: false,
-    supportFile: false,
     fixturesFolder: 'cypress/e2e/',
     videpUploadOnPasses:false,
     videoCompression:false,
