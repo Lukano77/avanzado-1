@@ -31,19 +31,6 @@ export class OnlineShop {
     }
 
     //Modal
-    verifyCreateProductModalTitle(){
-        cy.xpath("//header[contains(.,'Create Product')]");
-    }
-    verifyCreateProductModalButton(){
-        cy.get('.chakra-modal__footer').should('contains.text',"Create product");
-    }
-
-    verifyProductAddedModal(){
-        cy.xpath("//p[@class='chakra-text css-0'][contains(.,'Sandalias has been added')]");
-        
-    }
-
-
     addNewProduct(productName,productPrice,ProductImageUrl,id){
         cy.get(this.productName).type(productName)
         cy.get(this.productPrice).type(productPrice);
