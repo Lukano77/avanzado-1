@@ -5,7 +5,7 @@ module.exports = defineConfig({
     setupNodeEvents(on, config) {
       // implement node event listeners here
     },
-    //baseUrl : "https://pushing-it.vercel.app",
+    baseUrl : "https://pushing-it.vercel.app",
     experimentalSessionAndOrigin: true,
     defaultCommandTimeout: 1000,
     watchForFileChanges: false,

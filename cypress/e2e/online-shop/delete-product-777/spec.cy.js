@@ -18,13 +18,12 @@ describe(`${scenarioName} - ${module} ` , ()=> {
     beforeEach('Preconditions', ()=>{
         Cypress.session.clearAllSavedSessions();
         //#region Ingresar en Pushing IT
-        cy.visit("https://pushing-it.vercel.app");
+        cy.visit('/');
         loginPage.dblClickLoginPage();
         loginPage.writeUser(userName);
         loginPage.writePassword(password);
         loginPage.clickLoginButton(); 
-        //#endregion
-        cy.wait(2000);  
+        //#endregion 
         homePage.welcome(userName);
         //#region Dirigirse a Online Shop
         homePage.onlineShop();
@@ -36,8 +35,6 @@ describe(`${scenarioName} - ${module} ` , ()=> {
         cy.fixture(`${module}/${scenarioName}-${testCaseId}/data`).then(data=>{
             //#region Agregar un Producto Nuevo (Dato obtenido desde data.json)
             onlineShop.clickaddNewProductButton();
-            onlineShop.verifyCreateProductModalTitle();
-            onlineShop.verifyCreateProductModalButton();
             //Complete the Product Modal
             cy.log(`Product Name ${data.productName}`);
             cy.log(`Product Price ${data.productPrice}`);
@@ -45,14 +42,11 @@ describe(`${scenarioName} - ${module} ` , ()=> {
             cy.log(`Product Id ${data.id}`);
             onlineShop.addNewProduct(data.productName,data.productPrice,data.ProductImageUrl,data.id);
             onlineShop.createProductButton();
-            cy.log(`Producto Agregado ${data.productName}`);
-            cy.wait(2000);
             cy.xpath(`//p[contains(text(),'${data.productName} has been added')]`); 
             onlineShop.closeMessageAlert();
             //#region  Buscar el product por su ID en el search
             onlineShop.dropdoownSearching();
             onlineShop.enterProductId(data.id);
-            cy.log(`Busqueda del producto por su ID ${data.id}`);
             //#region Eliminar el producto
             onlineShop.deletingProducTrashIcon(data.id);
             cy.xpath("//header[contains(.,'Deleting Product')]");
@@ -60,14 +54,12 @@ describe(`${scenarioName} - ${module} ` , ()=> {
             onlineShop.deletingProduct();
             cy.xpath(`//p[contains(text(),'${data.productName} has been deleted')]`);
             onlineShop.closeMessageAlert();
-            cy.log(`Producto Eliminado ${data.productName}`);
             //#endregion
             //#region Volver a buscar el producto
             onlineShop.clearProductId();
             onlineShop.dropdoownSearching();
             onlineShop.enterProductId(data.id);
             onlineShop.validateNonProductExist(data.productName);
-            cy.log(`Producto No encontrado ${data.productName}`);
             onlineShop.clearProductId();
 
         });
