@@ -8,21 +8,10 @@ import { HomePage } from "../../../support/PageObjects/homePage";
 
 describe(`${scenarioName} - ${module} `, () => {
     const homePage = new HomePage();
-    beforeEach(() => {
-        cy.request({
-            method: "POST",
-            url: `${Cypress.env().baseUrlApi}/login`,
-            body: {
-                username: Cypress.env().usuario,
-                password: Cypress.env().password
-            },
-        }).then(respuesta => {
-            window.localStorage.setItem('token', respuesta.body.token);
-            window.localStorage.setItem('user', respuesta.body.user.username);
-            window.localStorage.setItem('userId', respuesta.body.user_id);
-            Cypress.env().token = respuesta.body.token;
-        })
+    before(() => {
+        cy.login(Cypress.env().usuario,Cypress.env().password);
         cy.visit('');
+        
     })
     it("Should be able to Delete, Add and Edit a Product", () => {
         homePage.welcome(Cypress.env().usuario);
@@ -42,6 +31,11 @@ describe(`${scenarioName} - ${module} `, () => {
                     }
                 });
             });
+            cy.request({
+                method:"POST",
+                url:`${Cypress.env().baseUrlApi}/create-product`,
+                body:data.product
+            })
         });
     })
 })
