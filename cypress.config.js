@@ -9,10 +9,13 @@ module.exports = defineConfig({
     experimentalSessionAndOrigin: true,
     defaultCommandTimeout: 1000,
     watchForFileChanges: false,
-    fixturesFolder: 'cypress/e2e/',
-    videpUploadOnPasses:false,
-    videoCompression:false,
-    experimentalStudio:true
-
+    fixturesFolder: 'cypress/e2e/'
   },
+  env: {
+    usuario:"pushingit",
+    password:"123456!",
+    baseUrlApi: "https://pushing-it.onrender.com/api",
+    token : ''
+  }
+
 });
