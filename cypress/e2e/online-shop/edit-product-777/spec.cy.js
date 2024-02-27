@@ -16,26 +16,9 @@ describe(`${scenarioName} - ${module} `, () => {
     it("Should be able to Delete, Add and Edit a Product", () => {
         homePage.welcome(Cypress.env().usuario);
         cy.fixture(`${module}/${scenarioName}-${testCaseId}/data`).then(data => {
-            cy.request({
-                method: "GET",
-                url: `${Cypress.env().baseUrlApi}/products?id=${data.product.id}`,
-                headers: {
-                    Authorization: `Bearer ${Cypress.env().token}`
-                }
-            }).its('body.products.docs').each((product) => {
-                cy.request({
-                    method: "DELETE",
-                    url: `${Cypress.env().baseUrlApi}/product/${product._id}`,
-                    headers: {
-                        Authorization: `Bearer ${Cypress.env().token}`
-                    }
-                });
-            });
-            cy.request({
-                method:"POST",
-                url:`${Cypress.env().baseUrlApi}/create-product`,
-                body:data.product
-            })
+            cy.eliminarProducto(data.product.id);
+            cy.crearProducto(data.product);
+            
         });
     })
 })
