@@ -23,6 +23,7 @@ describe(`${scenarioName} - ${module} ` , ()=> {
         loginPage.writeUser(userName);
         loginPage.writePassword(password);
         loginPage.clickLoginButton(); 
+        cy.wait(5000);
         //#endregion 
         homePage.welcome(userName);
         //#region Dirigirse a Online Shop
