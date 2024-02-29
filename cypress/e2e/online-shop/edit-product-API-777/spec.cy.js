@@ -17,7 +17,8 @@ describe(`${scenarioName} - ${module} `, () => {
         homePage.welcome(Cypress.env().usuario);
         cy.fixture(`${module}/${scenarioName}-${testCaseId}/data`).then(data => {
             cy.eliminarProducto(data.product.id);
-            cy.crearProducto(data.product);
+            cy.crearProducto(data.product.id,data.product.name,data.product.price,data.product.img);
+            cy.editarProducto(data.product.id);
             
         });
     })
