@@ -20,6 +20,7 @@ export class OnlineShop {
         this.deleteProduct="#delete-"
 
         this.deleteProductModal="#saveEdit";
+
     }
 
     checkTitle(){
@@ -73,5 +74,10 @@ export class OnlineShop {
     validateNonProductExist(product){
         cy.get(product).should('not.exist')
     }
+
+    getNameProduct(){
+        cy.get(this.productName).should('be.visible');
+    }
+    
     
 }
