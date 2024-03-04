@@ -32,6 +32,8 @@ describe(`${scenarioName} - ${module} `, () => {
         //#region  Buscar el product por su ID en el search
         onlineShop.dropdoownSearching();
         onlineShop.enterProductId(data.editproduct.id);
+        //I had to use this wait because if I dont use is not working.
+        //Im trying to use wait when I enter a product but its not working.
         cy.wait(3000);
         //#endregion
         //Verificamos que los datos del producto corresponden a los enviados en la edicion

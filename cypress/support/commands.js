@@ -25,9 +25,14 @@
 // Cypress.Commands.overwrite('visit', (originalFn, url, options) => { ... })
 
 import '../support/request/product'
+import '../support/PageObjects/loginPage'
 
 Cypress.Commands.add('getByDataCy', (selector) => {
     return cy.get(`[data-cy=${selector}]`)
+});
+
+Cypress.Commands.add('getByValue', (selector) => {
+    return cy.get(`[value=${selector}]`)
 });
 
 

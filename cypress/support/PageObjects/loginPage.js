@@ -6,7 +6,9 @@ export class LoginPage{
         this.usernameInput = "#user";
         this.passwordInput = "#pass";
         this.submitButton = "#submitForm";
-
+        this.user = 'user';
+        this.registertoggle = 'registertoggle';
+        this.submmitForm='submitForm'
     }
 
     dblClickLoginPage(){
