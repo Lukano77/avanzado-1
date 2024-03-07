@@ -2,7 +2,7 @@
 // Asignar el valor a un alias using as
 import { LoginPage } from "../support/PageObjects/loginPage";
 
-describe('Desafio 2', ()=> {
+describe('Actividad Complementaria Clase 2', ()=> {
 const loginPage = new LoginPage();
 
 it('Deberia validar que el usuario ingresado se encuentra en el header', () => {
