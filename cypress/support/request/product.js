@@ -1,20 +1,22 @@
-Cypress.Commands.add('eliminarProducto', (id) => {
+Cypress.Commands.add('verificarProducto',(id) =>{
     cy.request({
         method: "GET",
         url: `${Cypress.env().baseUrlApi}/products?id=${id}`,
         headers: {
             Authorization: `Bearer ${Cypress.env().token}`
         }
-    }).its('body.products.docs').each((product) => {
+})
+})
+
+Cypress.Commands.add('eliminarProducto', (_id)=>{
         cy.request({
             method: "DELETE",
-            url: `${Cypress.env().baseUrlApi}/product/${product._id}`,
+            url: `${Cypress.env().baseUrlApi}/product/${_id}`,
             headers: {
                 Authorization: `Bearer ${Cypress.env().token}`
             }
-        });
-    })
-});
+        })
+})
 
 Cypress.Commands.add('crearProducto', (id, productName, productPrice, ProductImageUrl) => {
     cy.request({

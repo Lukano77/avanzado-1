@@ -4,12 +4,14 @@ export class OnlineShop {
     constructor(){
         this.alert = '#chakra-modal--header-\:re\:';
         this.close = '#closeModal';
-        this.shoppingCart = '#goShoppingCart';
+        this.shoppingCart = 'goShoppingCart';
+        this.checkout = 'goCheckout'
         //Product List
         this.productList = "li.css-0";
         this.searchType = "#search-type";
         this.searchBar = "#search-bar"
         this.addProduct = "#add-product"
+        this.addToCart = 'add-to-cart-'
 
         //Add New Product
         this.productName="#productName";
@@ -55,9 +57,6 @@ export class OnlineShop {
         cy.get(this.close, {timeout:3000}).should('exist').click();
     }
 
-    goToShoppingCart(){
-        cy.get(this.shoppingCart).click();
-    }
 
     dropdoownSearching(){
         cy.get(this.searchType).select("id").invoke("val").should("eq","id");
