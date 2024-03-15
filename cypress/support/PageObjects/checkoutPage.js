@@ -5,6 +5,7 @@ export class checkoutPage {
         this.lastName='lastName'
         this.cardNumber='cardNumber'
         this.purchase='purchase'
+        this.sellId='sellId'
     }
 
 }

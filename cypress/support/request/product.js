@@ -57,3 +57,15 @@ Cypress.Commands.add('editarProducto', (id, productName, productPrice, ProductIm
         })
     })
 })
+
+Cypress.Commands.add('comprarProducto',() =>
+{
+    cy.request({
+        method: "GET",
+        url: `${Cypress.env().baseUrlApi}/purchase`,
+        headers: {
+            Authorization: `Bearer ${Cypress.env().token}`
+        }
+})
+
+})

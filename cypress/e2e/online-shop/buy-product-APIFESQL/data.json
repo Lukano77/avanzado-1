@@ -10,5 +10,13 @@
         "name": "Carteras",
         "price": "100.35",
         "img": "https://margies.shop/cdn/shop/files/Ron-Negro-2_800x.jpg?v=1696445384"
+    },
+    "checkout": {
+        "id": "778",
+        "name": "Carteras",
+        "price": "100.35",
+        "img": "https://margies.shop/cdn/shop/files/Ron-Negro-2_800x.jpg?v=1696445384"
     }
+
+
 }

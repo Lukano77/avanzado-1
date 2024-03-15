@@ -18,6 +18,8 @@
   "homepage": "https://github.com/Lukano77/avanzado-1#readme",
   "devDependencies": {
     "cypress": "^13.6.4",
-    "cypress-xpath": "^2.0.1"
+    "cypress-sql-server": "^1.0.0",
+    "cypress-xpath": "^2.0.1",
+    "pg": "^8.11.3"
   }
 }
