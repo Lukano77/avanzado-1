@@ -26,6 +26,9 @@
 
 import '../support/request/product'
 import '../support/PageObjects/loginPage'
+import '../support/PageObjects/onlineShop'
+import '../support/PageObjects/shoppingCart'
+import '../support/PageObjects/productPage'
 
 Cypress.Commands.add('getByDataCy', (selector) => {
     return cy.get(`[data-cy=${selector}]`)
