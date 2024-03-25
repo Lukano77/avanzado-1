@@ -53,7 +53,7 @@ describe(`${scenarioName} - ${module} `, () => {
         expect(quantity).to.be.equal(`$${this.nombrePrimerPrecio}`)
       })
 
-      //cy.getByDataCy('totalPrice').eq(0);
+      cy.getByDataCy('totalPrice').eq(0);
 
       cy.getByDataCy('productAmount').eq(1).invoke('text').then(function(quantity) {
         expect(quantity).to.be.equal('1')
@@ -64,5 +64,10 @@ describe(`${scenarioName} - ${module} `, () => {
         cy.getByDataCy('unitPrice').eq(1).invoke('text').then(function(quantity){
         expect(quantity).to.be.equal(`$${this.nombreSegundoPrecio}`)
       })
+      cy.getByDataCy('totalPrice').eq(1).invoke('text').then(function(quantity){
+        expect(quantity).to.be.equal(`$${1 * this.nombreSegundoPrecio}`)
+      })
+
+
     })
 })
